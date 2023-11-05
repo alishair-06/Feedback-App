@@ -1,0 +1,81 @@
+body {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  h1 {
+    font-size: 2em !important;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 1.5em !important;
+    }
+    h2 {
+      font-size: 1em !important;
+    }
+  
+    p {
+      font-size: 0.7em !important;
+    }
+  }
+  
+  .heroSection {
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0),
+      rgba(255, 0, 0, 1)
+    );
+    padding: 150px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .heroSection {
+      padding: 20px;
+    }
+  
+      .vot-btn-active{
+          font-size: 9px !important;
+      }
+  
+      .vot-btn{
+          font-size: 9px !important;
+      }
+  
+  
+  }
+  
+  .ss {
+    margin: auto;
+  }
+  
+  
+  .vot-btn-active{
+      font-size: 13px !important;
+      background-color: #212529;
+      border: 1px solid #212529;
+      color: #fff;
+  }
+  
+  .vot-btn{
+      font-size: 13px !important;
+      border: 1px solid #212529;
+  }
+  
+  
+  .vot-input{
+      border: 0;
+      width: 25px;
+      background-color: #212529;
+      color: #fff;
+  }
+  
+  
+  .comment_button{
+      background: none;
+      color: #f15050 !important;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+  }
