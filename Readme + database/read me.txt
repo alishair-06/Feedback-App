@@ -4,13 +4,11 @@ Email : m.alishair666@gmail.com
 
 Technologies Used
 ----Frontend:
-
 HTML
-CSS
+CSS 
 Bootstrap
 jQuery
 ----Backend:
-
 PHP
 Laravel
 
