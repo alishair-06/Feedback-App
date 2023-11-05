@@ -75,7 +75,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::post('/review/edit', [ReviewsController::class, 'edit']);
 
 
-Route::post('/vote/fvrt', [HomepageController::class, 'fvrt']);
+    Route::post('/vote/fvrt', [HomepageController::class, 'fvrt']);
 
     
     Route::redirect('/index', '/');
