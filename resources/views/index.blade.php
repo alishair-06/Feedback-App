@@ -96,6 +96,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
   return $html;
   }
   @endphp
+  
   {{-- function end --------}}
   <div class="container">
     <div class="row">
@@ -274,61 +275,61 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
          processData: false,
          success:function(data)
          {
-          if (!data.success) {
-            $(".toast-body").html(data.message);
-                      var myToast = document.getElementById("liveToast");
-                      // Use jQuery to trigger the 'show' method
-                      $(myToast).toast('show');
-          }else{
-          if (data.updated) {
-              location.reload();
-          }else{
+            if (!data.Success) {
+              $(".toast-body").html(data.message);
+                        var myToast = document.getElementById("liveToast");
+                        // Use jQuery to trigger the 'show' method
+                        $(myToast).toast('show');
+            }else{
+              if (data.updated) {
+                  location.reload();
+              }else{
 
-          
-          $('.btn-submite').prop('disabled', false);
-          $(".btn-submite").html('Submite');
-          $("#formid")[0].reset();
-          var html = $(".feedback-container").html();
-          $(".feedback-container").html(`<div class="list-group mb-1">
-                      <a class="list-group-item list-group-item-action rounded-4 p-4">
-                          <div class="d-flex w-100 justify-content-between">
+              
+              $('.btn-submite').prop('disabled', false);
+              $(".btn-submite").html('Submite');
+              $("#formid")[0].reset();
+              var html = $(".feedback-container").html();
+              $(".feedback-container").html(`<div class="list-group mb-1">
+                          <a class="list-group-item list-group-item-action rounded-4 p-4">
+                              <div class="d-flex w-100 justify-content-between">
+                                  <div>
+                                      <h5 class="m-0">${data.data.item_title}</h5>
+                                      <span class="text-body-secondary"
+                                          style="font-size: 14px; color: rgb(73, 73, 73); font-style: italic;">~${data.data.name}</span>
+                                          &nbsp;
+                                          <span class="text-body-secondary"><i class="fa pr-1 fa-edit upd_feedback"
+                                                  style="font-size: 14px;" id="${data.data.itemid}"
+                                                  aria-hidden="true"></i>&nbsp;<i class="fa-solid fa-trash del_feedback"
+                                                  style="font-size: 14px;" id="${data.data.itemid}"
+                                                  aria-hidden="true"></i></span>
+                                  </div>
+                                  <small class="text-body-secondary">
+                                      <button class="vot-btn voted_btn btn
+                                          rounded-5 px-3 py-2" id="${data.data.itemid}"><i
+                                              class="fa-regular fa-heart"></i>&nbsp;&nbsp;&nbsp;Votes 0
+                                      </button><input type="hidden" class="vot-input" value="0">
+                                  </small>
+                              </div>
+                              <small class="">${data.data.item_discription}</small>
                               <div>
-                                  <h5 class="m-0">${data.data.item_title}</h5>
-                                  <span class="text-body-secondary"
-                                      style="font-size: 14px; color: rgb(73, 73, 73); font-style: italic;">~${data.data.name}</span>
-                                      &nbsp;
-                                      <span class="text-body-secondary"><i class="fa pr-1 fa-edit upd_feedback"
-                                              style="font-size: 14px;" id="${data.data.itemid}"
-                                              aria-hidden="true"></i>&nbsp;<i class="fa-solid fa-trash del_feedback"
-                                              style="font-size: 14px;" id="${data.data.itemid}"
-                                              aria-hidden="true"></i></span>
+                                  <button class="comment_button p-0 my-2 text-body-secondary" type="button"
+                                      data-bs-toggle="collapse" data-bs-target="#h6b125${data.data.itemid}"
+                                      aria-expanded="false" aria-controls="h6b125${data.data.itemid}">
+                                      <i class="fa-regular fa-comments"></i> Comments
+                                  </button>
                               </div>
-                              <small class="text-body-secondary">
-                                  <button class="vot-btn voted_btn btn
-                                      rounded-5 px-3 py-2" id="${data.data.itemid}"><i
-                                          class="fa-regular fa-heart"></i>&nbsp;&nbsp;&nbsp;Votes 0
-                                  </button><input type="hidden" class="vot-input" value="0">
-                              </small>
-                          </div>
-                          <small class="">${data.data.item_discription}</small>
-                          <div>
-                              <button class="comment_button p-0 my-2 text-body-secondary" type="button"
-                                  data-bs-toggle="collapse" data-bs-target="#h6b125${data.data.itemid}"
-                                  aria-expanded="false" aria-controls="h6b125${data.data.itemid}">
-                                  <i class="fa-regular fa-comments"></i> Comments
-                              </button>
-                          </div>
-                          <div class="collapse" id="h6b125${data.data.itemid}">
-                              <div class="card card-body">
-                                  <div class="reply_main_div"><form class="new_reply_form">
-                                      @csrf
-                                      <input name="parent_item" type="hidden" value="${data.data.itemid}">
-                                  <div class="new_reply_div" style="font-size: 14px; color: #f15050; font-weight: 600;"><span class="add_a_review_icon"><i class="fa-solid fa-feather"></i>&nbsp;Add a Review</span></div></form></div>
+                              <div class="collapse" id="h6b125${data.data.itemid}">
+                                  <div class="card card-body">
+                                      <div class="reply_main_div"><form class="new_reply_form">
+                                          @csrf
+                                          <input name="parent_item" type="hidden" value="${data.data.itemid}">
+                                      <div class="new_reply_div" style="font-size: 14px; color: #f15050; font-weight: 600;"><span class="add_a_review_icon"><i class="fa-solid fa-feather"></i>&nbsp;Add a Review</span></div></form></div>
+                                  </div>
                               </div>
-                          </div>
-                      </a>
-                  </div> ${html}`)
-             }
+                          </a>
+                      </div> ${html}`)
+                }
              }
            }
          })
@@ -435,12 +436,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
       $(document).on('click', '.add_a_review_icon', function(){
              $(this).parent('.new_reply_div').html(`<div class="my-1">
                       <input name="reply_message" type="text" class="form-control reply_message">
-                      <div class="d-flex justify-content-start align-items-center">
-                          <span class="mx-2 text-center bold_text"><i class="fa-solid fa-bold"></i></span>
-                          <span class="mx-2 text-center underline_text"><i class="fa-solid fa-underline"></i></span>
-                          <span class="mx-2 text-center italic_text"><i class="fa-solid fa-italic"></i></span>
-                          <span class="mx-2 text-center strikethrough_text"><i class="fa-solid fa-strikethrough"></i></span>
-                        </div>
+                      
                       <button class="btn btn-sm my-2" type="submit" style="background-color: #f15050; color: #fff;">submit</button>
               </div>`);
          });
@@ -448,12 +444,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
          $(document).on('click', '.reply_text', function(){
              $(this).parent(".reply_div").html(`<div class="my-1">
                       <input name="reply_message" type="text" class="form-control reply_message">
-                      <div class="d-flex justify-content-start align-items-center">
-                          <span class="mx-2 text-center bold_text"><i class="fa-solid fa-bold"></i></span>
-                          <span class="mx-2 text-center underline_text"><i class="fa-solid fa-underline"></i></span>
-                          <span class="mx-2 text-center italic_text"><i class="fa-solid fa-italic"></i></span>
-                          <span class="mx-2 text-center strikethrough_text"><i class="fa-solid fa-strikethrough"></i></span>
-                      </div>
+                      
                       <button class="btn btn-sm my-2" type="submit" style="background-color: #f15050; color: #fff;">submit</button>
               </div>`);
          });
@@ -611,7 +602,9 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
                   $('#item_discription').val(data.Data_One.item_discription);
                   $('#cat_id').val(data.Data_One.cat_id);
                   $('#i_id').val(data.Data_One.itemid);
-                  $('#old_pic_name').val(data.Data_One.item_image);
+                  $('html, body').animate({
+                      scrollTop: $("#formid").offset().top
+                  }, 2000);
               }
               });
           })

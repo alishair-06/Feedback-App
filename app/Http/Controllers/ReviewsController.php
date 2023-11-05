@@ -69,7 +69,8 @@ class ReviewsController extends Controller
             return response()->json([
                 'message'   => 'Thanks for your Review , your review has been posted',
                 'update'  => false,
-                "replay" => $idd
+                "replay" => $idd,
+                'Success'  => true
                ]);
         }else{
 
@@ -85,7 +86,8 @@ class ReviewsController extends Controller
             return response()->json([
                 'message'   => 'Updated Successfully',
                 'update'  => true,
-                "replay" => $idd
+                "replay" => $idd,
+                'Success'  => true
                ]);
         }
     }
@@ -123,7 +125,8 @@ class ReviewsController extends Controller
             return response()->json([
                 'message'   => 'Thanks for your Review , your review has been posted',
                 'update'  => false,
-                "replay" => $idd
+                "replay" => $idd,
+                'Success'  => true
             ]);
 
         }else{
@@ -140,7 +143,8 @@ class ReviewsController extends Controller
             return response()->json([
                 'message'   => 'Updated Successfully',
                 'update'  => true,
-                "replay" => $idd
+                "replay" => $idd,
+                'Success'  => true
                ]);
         }
     }

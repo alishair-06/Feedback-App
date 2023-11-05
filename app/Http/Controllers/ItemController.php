@@ -73,14 +73,16 @@ class ItemController extends Controller
 
         if ($request->input('i_id') != null) {
             return response()->json([
-                'updated'   => true
+                'updated'   => true,
+                'Success'  => true
             ]);
         }
         $data = Item::join("users","users.id","=","items.user_id")->where("itemid",$class->itemid)->first();
         return response()->json([
             'message'   => 'created or updated successfully',
-            'class_name'  => 'alert-success',
-            'data'=> $data
+            'updated'   => false,
+            'data'=> $data,
+            'Success'  => true
         ]);
     }
 
