@@ -5,13 +5,13 @@
 
 {{-- function ///// --}}
 @php
-function fetch_reviews($item) {
+function fetch_reviews($item ,$p_name) {
 $replay =
 App\Models\Reviews::join("users","users.id","=","reviews.user_id")->where("rev_featured",$item)->orderBy('reviewid',
 'DESC')->get();
 if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new_reply_form">
     ' . csrf_field() . '
-  <input name="parent_item" type="hidden" value="' .$item.'">
+  <input name="parent_item" type="hidden" value="'.$item.'">
   <div class="new_reply_div" style="font-size: 14px; color: #f15050; font-weight: 600;"><span
       class="add_a_review_icon"><i class="fa-solid fa-feather"></i>&nbsp;Add a Review</span></div>
   </form>
@@ -39,7 +39,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
     }
 
     $html .='<p class="m-0 ms-2 update_msg_text" style="font-size: small;"><span
-        style=" color: rgb(93, 92, 92); font-style: italic;">~'.$rep->name. ': </span>'.$rep->rev_msg.'</p>
+        style=" color: rgb(93, 92, 92); font-style: italic;">~'.$p_name. ': </span>'.$rep->rev_msg.'</p>
     <small class="ms-2">'.$rep->rev_date.'</small>';
     $html .='<form class="reply_form">
       ' . csrf_field() . '
@@ -149,7 +149,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
               </div>
               <div class="collapse" id="h46b125{{$items->itemid}}">
                 <div class="card card-body">
-                  {!! fetch_reviews($items->itemid); !!}
+                  {!! fetch_reviews($items->itemid , $items->name); !!}
                 </div>
               </div>
             </a>

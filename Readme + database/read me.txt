@@ -1,0 +1,38 @@
+Project Feedback Tool - README
+My Name :Muhammad ALi Shair.
+Email : m.alishair666@gmail.com
+
+Technologies Used
+----Frontend:
+
+HTML
+CSS
+Bootstrap
+jQuery
+----Backend:
+
+PHP
+Laravel
+
+Setting Up the Database ...........
+Make sure you have Laravel installed. If not, you can install it using composer.
+
+Run the following command to create the necessary tables in the database:
+php artisan migrate...................
+
+Database Configuration
+The database configuration is defined in the .env file. Ensure that the database connection settings match your local setup.
+
+Default Admin Login
+Email: admin@1.com
+Password: 11223344
+
+
+
+Project Structure
+app: Contains the application logic and controllers.
+resources: Stores your views, CSS, and JavaScript files.
+routes: Contains your web and API routes.
+database: Houses your database migrations and seeders.
+Feedback Submission
+Users can provide feedback on various aspects of the application through the provided feedback tool.
