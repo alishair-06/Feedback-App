@@ -42,6 +42,10 @@
                                         <button class="small  btn border-0">Already have an account ? <span
                                                 class="text-danger"> Login..</span></button>
                                     </div>
+                                    <div>
+                                        <p class="m-0 p-0 " style="font-size: 13px">Admin Email: Admin@1.com</p>
+                                                <p class="m-0 p-0 " style="font-size: 13px">Admin Email: 11223344</p>
+                                    </div>
                                     @if ($errors->first('email'))
                                     <div class="text-danger">
 
@@ -104,7 +108,6 @@
                                                             placeholder="Password" name="password">
                                                     </div>
                                                 </div>
-
                                             </div>
 
                                             <div class="form-group">

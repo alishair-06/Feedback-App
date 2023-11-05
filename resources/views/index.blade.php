@@ -169,12 +169,12 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
                 <div class="col-md-12">
                   <label class="my-2" style="color: #f15050; font-weight: 600" for="title">Item
                     title</label>
-                  <input type="text" name="item_name" id="item_name" class="form-control">
+                  <input type="text" name="item_name" id="item_name" class="form-control" required>
                 </div>
                 <div class="col-md-12">
                   <label class="my-2" style="color: #f15050; font-weight: 600" for="title">Discription</label>
                   <textarea name="item_discription" id="item_discription" class="form-control" cols="20"
-                    rows="5"></textarea>
+                    rows="5" required></textarea>
                 </div>
                 <div class="col-md-6">
                   <label class="my-2" style="color: #f15050; font-weight: 600" for="discription">Catigory</label>
@@ -434,19 +434,78 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
       
       $(document).on('click', '.add_a_review_icon', function(){
              $(this).parent('.new_reply_div').html(`<div class="my-1">
-                      <input name="reply_message" type="text" class="form-control">
+                      <input name="reply_message" type="text" class="form-control reply_message">
+                      <div class="d-flex justify-content-start align-items-center">
+                          <span class="mx-2 text-center bold_text"><i class="fa-solid fa-bold"></i></span>
+                          <span class="mx-2 text-center underline_text"><i class="fa-solid fa-underline"></i></span>
+                          <span class="mx-2 text-center italic_text"><i class="fa-solid fa-italic"></i></span>
+                          <span class="mx-2 text-center strikethrough_text"><i class="fa-solid fa-strikethrough"></i></span>
+                        </div>
                       <button class="btn btn-sm my-2" type="submit" style="background-color: #f15050; color: #fff;">submit</button>
               </div>`);
          });
      
          $(document).on('click', '.reply_text', function(){
              $(this).parent(".reply_div").html(`<div class="my-1">
-                      <input name="reply_message" type="text" class="form-control">
+                      <input name="reply_message" type="text" class="form-control reply_message">
+                      <div class="d-flex justify-content-start align-items-center">
+                          <span class="mx-2 text-center bold_text"><i class="fa-solid fa-bold"></i></span>
+                          <span class="mx-2 text-center underline_text"><i class="fa-solid fa-underline"></i></span>
+                          <span class="mx-2 text-center italic_text"><i class="fa-solid fa-italic"></i></span>
+                          <span class="mx-2 text-center strikethrough_text"><i class="fa-solid fa-strikethrough"></i></span>
+                      </div>
                       <button class="btn btn-sm my-2" type="submit" style="background-color: #f15050; color: #fff;">submit</button>
               </div>`);
          });
      
-     
+    //  basic formating of input ... 
+    var isBold = false;
+    
+      $(document).on('click', '.bold_text', function(){
+        isBold = !isBold;
+        
+        if (isBold) {
+            $(this).parent("div").parent("div").find(".reply_message").css("font-weight", "bold");
+        } else {
+            $(this).parent("div").parent("div").find(".reply_message").css("font-weight", "normal");
+        }
+    });
+
+
+    var isunderline = false;
+    
+    $(document).on('click', '.underline_text', function(){
+      isunderline = !isunderline;
+      if (isunderline) {
+          $(this).parent("div").parent("div").find(".reply_message").css("text-decoration", "underline");
+      } else {
+          $(this).parent("div").parent("div").find(".reply_message").css("text-decoration", "none");
+      }
+  });
+
+
+  var italic_text = false;
+    
+    $(document).on('click', '.italic_text', function(){
+      italic_text = !italic_text;
+      if (italic_text) {
+          $(this).parent("div").parent("div").find(".reply_message").css("font-style", "italic");
+      } else {
+          $(this).parent("div").parent("div").find(".reply_message").css("font-style", "normal");
+      }
+  });
+
+
+  var strikethrough_text = false;
+    
+    $(document).on('click', '.strikethrough_text', function(){
+      strikethrough_text = !strikethrough_text;
+      if (strikethrough_text) {
+          $(this).parent("div").parent("div").find(".reply_message").css("text-decoration", "line-through");
+      } else {
+          $(this).parent("div").parent("div").find(".reply_message").css("text-decoration", "none");
+      }
+  });
      
 
      $(document).on('click', '.upd_review', function(){
