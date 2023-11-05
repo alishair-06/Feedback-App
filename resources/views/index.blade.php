@@ -31,14 +31,14 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
     <span class="" style="font-size: 14px; color: #f15050;">~'.$rep->name.'.</span>
     &nbsp;';
     if (Auth::user()) {
-      if (Auth::user()->is_admin || (Auth::user()->id == $rep->user_id) ) {
-        $html .='<span class="text-body-secondary"><i class="fa pr-1 fa-edit upd_review" style="font-size: 14px;"
-            id="'.$rep->reviewid.'" aria-hidden="true"></i>&nbsp;<i class="fa-solid fa-trash del_reply"
-            style="font-size: 14px;" id="'.$rep->reviewid.'" aria-hidden="true"></i></span>';
-      }
+    if (Auth::user()->is_admin || (Auth::user()->id == $rep->user_id) ) {
+    $html .='<span class="text-body-secondary"><i class="fa pr-1 fa-edit upd_review" style="font-size: 14px;"
+        id="'.$rep->reviewid.'" aria-hidden="true"></i>&nbsp;<i class="fa-solid fa-trash del_reply"
+        style="font-size: 14px;" id="'.$rep->reviewid.'" aria-hidden="true"></i></span>';
+    }
     }
 
-        $html .='<p class="m-0 ms-2 update_msg_text" style="font-size: small;"><span
+    $html .='<p class="m-0 ms-2 update_msg_text" style="font-size: small;"><span
         style=" color: rgb(93, 92, 92); font-style: italic;">~'.$rep->name. ': </span>'.$rep->rev_msg.'</p>
     <small class="ms-2">'.$rep->rev_date.'</small>';
     $html .='<form class="reply_form">
@@ -69,15 +69,15 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
     <span class="" style="font-size: 14px; color: #f15050;">~'.$rep->name.'.</span>
     &nbsp;';
     if (Auth::user()) {
-      if (Auth::user()->is_admin || (Auth::user()->id == $rep->user_id) ) {
-        $html .='<span class="text-body-secondary"><i class="fa pr-1 fa-edit upd_review" style="font-size: 14px;"
+    if (Auth::user()->is_admin || (Auth::user()->id == $rep->user_id) ) {
+    $html .='<span class="text-body-secondary"><i class="fa pr-1 fa-edit upd_review" style="font-size: 14px;"
         id="'.$rep->reviewid.'" aria-hidden="true"></i>&nbsp;<i class="fa-solid fa-trash del_reply"
         style="font-size: 14px;" id="'.$rep->reviewid.'" aria-hidden="true"></i></span>';
-      }
     }
-  
+    }
 
-        $html .='<p class="m-0 ms-2 update_msg_text" style="font-size: small;"><span
+
+    $html .='<p class="m-0 ms-2 update_msg_text" style="font-size: small;"><span
         style=" color: rgb(93, 92, 92); font-style: italic;">~'.$p_name. ': </span>'.$rep->rev_msg.'</p>
     <small class="ms-2">'.$rep->rev_date.'</small>';
     $html .='<form class="reply_form">
@@ -96,7 +96,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
   return $html;
   }
   @endphp
-  
+
   {{-- function end --------}}
   <div class="container">
     <div class="row">
@@ -107,26 +107,27 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
             <a class="list-group-item list-group-item-action rounded-4 p-4">
               <div class="d-flex w-100 justify-content-between">
                 <div>
-                  <h5 class="m-0">{{$items->item_title}}</h5>
+                  <h5 class="m-0">{{$items->item_title}} <span class="text-body-secondary"
+                      style="font-size: small">({{$items->cat_title}})</span></h5>
                   <span class="text-body-secondary"
                     style="font-size: 14px; color: rgb(73, 73, 73); font-style: italic;">~{{$items->name}}</span>
                   &nbsp;
                   @if (Auth::user())
-                  @if (Auth::user()->is_admin || (Auth::user()->id == $items->user_id))    
+                  @if (Auth::user()->is_admin || (Auth::user()->id == $items->user_id))
                   <span class="text-body-secondary"><i class="fa pr-1 fa-edit upd_feedback" style="font-size: 14px;"
                       id="{{$items->itemid}}" aria-hidden="true"></i>&nbsp;<i class="fa-solid fa-trash del_feedback"
                       style="font-size: 14px;" id="{{$items->itemid}}" aria-hidden="true"></i></span>
-                  @endif    
+                  @endif
                   @endif
                 </div>
 
                 @php
                 if (Auth::user()) {
-                  $voted =
-                  App\Models\item_votes::select('item_id')->where("item_id",$items->itemid)->where("user_id",
-                  Auth::user()->id)->count();
+                $voted =
+                App\Models\item_votes::select('item_id')->where("item_id",$items->itemid)->where("user_id",
+                Auth::user()->id)->count();
                 }else {
-                  $voted = 0 ;
+                $voted = 0 ;
                 }
                 @endphp
                 <small class="text-body-secondary">
@@ -163,7 +164,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
         @if (Auth::user())
         <div class="container-fluid my-5">
           <div class="" style="">
-            <h3>Your's Feadback Item</h3>
+            <h3>Enter Your Feedback Item</h3>
             <form id="formid">
               <div class="row">
                 {{csrf_field()}}
@@ -174,8 +175,8 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
                 </div>
                 <div class="col-md-12">
                   <label class="my-2" style="color: #f15050; font-weight: 600" for="title">Discription</label>
-                  <textarea name="item_discription" id="item_discription" class="form-control" cols="20"
-                    rows="5" required></textarea>
+                  <textarea name="item_discription" id="item_discription" class="form-control" cols="20" rows="5"
+                    required></textarea>
                 </div>
                 <div class="col-md-6">
                   <label class="my-2" style="color: #f15050; font-weight: 600" for="discription">Catigory</label>
@@ -221,14 +222,14 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
 
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body">
-                Hello, world! This is a toast message.
-            </div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <div class="d-flex">
+        <div class="toast-body">
+          Hello, world! This is a toast message.
         </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
     </div>
-</div>
+  </div>
 
   @stop
 

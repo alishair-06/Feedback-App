@@ -16,7 +16,7 @@ class HomepageController extends Controller
     public function index()  
     {
         $catigories = catigory::get();
-        $item = Item::orderBy('itemid', 'desc')->join("users","users.id",'=','items.user_id')->paginate(10);
+        $item = Item::orderBy('itemid', 'desc')->join("users","users.id",'=','items.user_id')->join("catigories","catigories.catid",'=','items.cat_id')->paginate(10);
         return  view("index",["catigories"=>$catigories,"item"=>$item ]);
     }
 
