@@ -55,6 +55,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->blocked) {
+            return response()->json([
+                'message'   => 'You Have Been Blocked By Admin',
+                'Success'  => false
+            ]);
+        }
         $class = Item::updateOrCreate([
             'itemid'   => $request->input('i_id'),
         ],[

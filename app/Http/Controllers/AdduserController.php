@@ -33,16 +33,25 @@ class AdduserController extends Controller
                     }
                     return $user_status;
                 })
+                ->addColumn('blocked', function($row){
+                    if ($row->blocked == 1) {
+                        $user_status = "Blocked";
+                    }else {
+                        $user_status = "unBlocked";
+                    }
+                    return $user_status;
+                })
                 ->addColumn('action', function($row){
                     $btn = '<div class="btn-group mt-1 mr-1" role="group">
                     <button class="sm-btn btn btn-primary dropdown-toggle" id="btn3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-edit"></i></button>
                     <div class="dropdown-menu" aria-labelledby="btn3" style="">
                     <a class="dropdown-item text-success upd" id="'.$row->id.'">Update</a>
-                    <a class="dropdown-item text-danger del" id="'.$row->id.'">delete</a></div>
+                    <a class="dropdown-item text-danger del" id="'.$row->id.'">delete</a>
+                    <a class="dropdown-item text-danger blocked" id="'.$row->id.'">block</a></div>
                     </div>';
                     return $btn;
                 })
-                ->rawColumns(['action','is_admin'])
+                ->rawColumns(['action','is_admin','blocked'])
                 ->make(true);
                 
             
@@ -277,5 +286,16 @@ class AdduserController extends Controller
         } 
     }
 
+
+    public function user_block(Request $request)
+    {
+        if($request->ajax()){
+            $edit = User::Find($request->id);
+
+            $edit->update([
+           'blocked' => 1
+            ]);
+        } 
+    }
 
 }

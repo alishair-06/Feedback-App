@@ -274,6 +274,12 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
          processData: false,
          success:function(data)
          {
+          if (!data.success) {
+            $(".toast-body").html(data.message);
+                      var myToast = document.getElementById("liveToast");
+                      // Use jQuery to trigger the 'show' method
+                      $(myToast).toast('show');
+          }else{
           if (data.updated) {
               location.reload();
           }else{
@@ -322,6 +328,7 @@ if ($replay->count() <= 0) { $html='<div class="reply_main_div"><form class="new
                           </div>
                       </a>
                   </div> ${html}`)
+             }
              }
            }
          })

@@ -35,7 +35,7 @@
                         <th>user</th>
                         <th>E.mail</th>
                         <th>Status</th>
-                        <th>Updated_at</th>
+                        <th>Blocked</th>
                         <th width="100px">Action</th>
                     </tr>
                 </thead>
@@ -98,8 +98,8 @@ $(document).ready(function() {
                     orderable: false
                 },
                 {
-                    data: 'created_at',
-                    name: 'created_at'
+                    data: 'blocked',
+                    name: 'blocked'
                 },
                 {
                     data: 'action',
@@ -248,7 +248,8 @@ $(document).ready(function() {
                     type: 'get',
                     url: '/user_destroy',
                     data: {
-                        'id': id
+                        'id': id,
+                "_token": "{{ csrf_token() }}"
                     },
                     success: function(data) {
                         // alert("delee")
@@ -258,6 +259,44 @@ $(document).ready(function() {
             }
         })
     });
+
+
+     //   <!-- -------------------- delete function -------------------------- -->
+
+     $(document).on('click', '.blocked', function() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+
+                var id = $(this).attr("id");
+                $.ajax({
+                    type: 'post',
+                    url: '/user_block',
+                    data: {
+                        'id': id,
+                "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        // alert("delee")
+                        $('.item_datatable').DataTable().ajax.reload();
+                    }
+                });
+            }
+        })
+    });
+
 
 
     $(document).on('keyup', '#password', function() {

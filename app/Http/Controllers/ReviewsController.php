@@ -46,6 +46,12 @@ class ReviewsController extends Controller
                 'Success'  => false
             ]);
         }
+        if (Auth::user()->blocked) {
+            return response()->json([
+                'message'   => 'You Have Been blocked by Admin',
+                'Success'  => false
+            ]);
+        }
         if (!$request->input('rird')) {
             $class = Reviews::updateOrCreate([
                 'reviewid'   => $request->input('rird'),
@@ -88,6 +94,12 @@ class ReviewsController extends Controller
 
     public function store_new(Request $request)
     {
+        if (Auth::user()->blocked) {
+            return response()->json([
+                'message'   => 'You Have Been blocked by Admin',
+                'Success'  => false
+            ]);
+        }
         if (!Auth::user()) {
             return response()->json([
                 'message'   => 'You Have to Login First',

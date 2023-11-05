@@ -42,16 +42,14 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::post('user', [AdduserController::class, 'store'])->name('user.insert');
     Route::post('/user/edit', [AdduserController::class, 'edit']);
     Route::post('/user_singup', [AdduserController::class, 'c_store']);
-    Route::get('user_destroy', [AdduserController::class, 'destroy']);
+    Route::post('/user_destroy', [AdduserController::class, 'destroy']);
+    Route::post('/user_block', [AdduserController::class, 'user_block']);
     
     // catigories............................... check
     Route::get('/cat', [CatigoryController::class, 'index'])->name('cat.index');
     Route::post('/cat', [CatigoryController::class, 'store'])->name('cat.insert');
     Route::post('cat/edit', [CatigoryController::class, 'edit']);
     Route::post('/cat/destroy', [CatigoryController::class, 'destroy']);
-    
-    
-    
     
     
     Route::get('/item', [ItemController::class, 'index'])->name('item.index');
